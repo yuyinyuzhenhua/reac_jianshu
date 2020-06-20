@@ -1,7 +1,8 @@
 import {
     IPTUT_CHANGE,
     ADD_ITEM,
-    DELETE_ITEM
+    DELETE_ITEM,
+    INIT_LIST
 } from './actionTypes'
 
 
@@ -28,6 +29,12 @@ export const reducer = (state = defaultState, action) => {
         let newState = JSON.parse(JSON.stringify(state))
         let index = action.text
         newState.list.splice(index, 1)
+        return newState
+    }
+
+    if(action.type === INIT_LIST){
+        let newState = JSON.parse(JSON.stringify(state))
+        newState.list = action.text
         return newState
     }
 

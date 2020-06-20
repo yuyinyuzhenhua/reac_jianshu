@@ -1,7 +1,8 @@
 import {
     IPTUT_CHANGE,
     ADD_ITEM,
-    DELETE_ITEM
+    DELETE_ITEM,
+    INIT_LIST
 } from './actionTypes'
 
 
@@ -22,5 +23,12 @@ export const getDeleteItemAction = (index) => {
     return {
         type: DELETE_ITEM,
         text: index
+    }
+}
+
+export const getInitAction = (data) => {
+    return {
+        type: INIT_LIST,
+        text: data
     }
 }

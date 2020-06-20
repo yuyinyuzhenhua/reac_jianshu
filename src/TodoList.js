@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react'
-// import Item from './Item'
-// import axios from 'axios'
+import axios from 'axios'
 import store from './store'
-import { Input, Button, List  } from 'antd';
+import TodoListUI from './TodoListUI'
+
 import {
     getInputChangeAction,
     getAddItemAction,
-    getDeleteItemAction
+    getDeleteItemAction,
+    getInitAction
 } from './store/actionCreator'
 
 class TodoList extends Component{
@@ -18,23 +19,27 @@ class TodoList extends Component{
     render(){
         return (
             <Fragment>
-                <div>
-                    <Input style={{width: 300, marginRight: 10}}   value={this.state.iptVal} onChange={this.handleInputChange}/>
-                    <Button type="primary" onClick={this.handleSubmit}>增加</Button>
-                    <List 
-                        style={{width:300, marginTop: 20}}
-                        bordered
-                        dataSource={this.state.list} 
-                        renderItem = {(item, index) => (
-                            <List.Item onClick={this.handleDelete.bind(this, index)}>
-                                {item}
-                            </List.Item>
-                        )}
-                        
-                    />
-                </div>
+                <TodoListUI 
+                    iptVal={this.state.iptVal} 
+                    list={this.state.list} 
+                    handleInputChange={this.handleInputChange}
+                    handleSubmit={this.handleSubmit}
+                    handleDelete={this.handleDelete}
+                ></TodoListUI>
             </Fragment>
         )
+    }
+
+    componentDidMount(){
+        axios.get('/list.json').then(res => {
+            console.log(res)
+            let result = [];
+            result = res.data && res.data 
+            const action = getInitAction(result)
+            store.dispatch(action)
+        }).catch(err => {
+            console.log(err)
+        })
     }
     
     handleInputChange = (e) => {
