@@ -1,2 +1,6 @@
-export const SEARCH_FOCUSED_ACTION = 'search_focused_action'
-export const SEARCH_BLUR_ACTION = 'search_blur_action'
+export const SEARCH_FOCUSED_ACTION = 'header/search_focused_action'
+export const SEARCH_BLUR_ACTION = 'header/search_blur_action'
+export const CHANGE_LIST = 'header/change_list'
+export const MOUSE_ENTER = 'header/mouse_enter'
+export const MOUSE_LEAVE = 'header/mouse_leave'
+export const CHANGE_PAGE = 'header/change_page'
