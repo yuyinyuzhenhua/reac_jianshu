@@ -68,7 +68,7 @@ export const SearchWrapper = styled.div`
         text-align: center;
         &.focused {
             background: #777;
-            color: #777;
+            color: #fff;
         }
     }
 `

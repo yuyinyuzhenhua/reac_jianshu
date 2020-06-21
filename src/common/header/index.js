@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { 
     HeaderWrap, 
     Logo, 
@@ -22,9 +22,11 @@ import { actionCreators }  from './store'
 class Header extends Component{
     constructor(props){
         super(props)
+        this.rotateRef = createRef()
     }
     
     getListArea = () => {
+        console.log(this.rotateRef.current)
         const {focused, 
                 list, 
                 page, 
@@ -48,7 +50,9 @@ class Header extends Component{
                 <SearchInfo onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                     <SearchInfoTitle>
                         热门搜索
-                        <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>换一批</SearchInfoSwitch>
+                        <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage).bind(this)}>
+                            <i ref={this.rotateRef} className="iconfont">&#xe772;</i>
+                            换一批</SearchInfoSwitch>
                     </SearchInfoTitle>
                     <div>
                         <SearchInfoList>
@@ -62,7 +66,7 @@ class Header extends Component{
         }
 }
     render(){
-        const { focused, onFocus, onBlur } = this.props;
+        const { focused, onFocus, onBlur, list } = this.props;
         return (
             <HeaderWrap>
                 <Logo href="/" />
@@ -70,7 +74,7 @@ class Header extends Component{
                     <NavItem className='left active'>首页</NavItem>
                     <NavItem className='left'>下载APP</NavItem>
                     <NavItem className='right'>登录</NavItem>
-                    <NavItem className='right'>Aa</NavItem>
+                    <NavItem className='right'><i className='iconfont'>&#xe636;</i></NavItem>
                     <SearchWrapper>
                         <CSSTransition
                                 in={focused}
@@ -79,16 +83,17 @@ class Header extends Component{
                         >
                             <NavSearch
                                 className={focused ? 'focused' : ''} 
-                                onFocus={onFocus}
+                                onFocus={() => onFocus(list)}
                                 onBlur={onBlur}
                             ></NavSearch>
                         </CSSTransition>
+                            <i className={focused ? 'iconfont zoom focused' : 'iconfont zoom'}   >&#xe610;</i>
                         {this.getListArea()}
                     </SearchWrapper>
                 </Nav>
                 <Addition>
                     <Button className="reg">注册</Button>
-                    <Button className="writting">写文章</Button>
+                    <Button className="writting"><i className="iconfont">&#xe60f;</i>写文章</Button>
                 </Addition>
             </HeaderWrap>
         )
@@ -107,8 +112,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFocus() {
-            dispatch(actionCreators.getList())
+        onFocus(list) {
+            (list.size <= 0) && dispatch(actionCreators.getList())
             dispatch(actionCreators.searchFocuse())
         },
         onBlur() {
