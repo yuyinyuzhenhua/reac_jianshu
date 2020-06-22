@@ -26,7 +26,7 @@ class Header extends Component{
     }
     
     getListArea = () => {
-        console.log(this.rotateRef.current)
+        // console.log(this.rotateRef.current)
         const {focused, 
                 list, 
                 page, 

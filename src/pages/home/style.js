@@ -37,6 +37,8 @@ export const TopicItem = styled.div`
     border: 1px solid #dcdcdc;
     border-radius: 4px;
     padding-right: 10px;
+    margin-right: 10px;
+    margin-bottom: 18px;
     .topic-pic {
         width: 32px;
         height: 32px;
