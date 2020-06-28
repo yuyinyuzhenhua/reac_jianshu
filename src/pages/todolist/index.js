@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
+import Input from './Input'
+import List from './List'
 
 class Todolist extends Component{
     render(){
         return <div>
-1111a
+            <Input></Input>
+            <List></List>
         </div>
     }
-}
+} 
 
 export default Todolist
+
 
 
 
