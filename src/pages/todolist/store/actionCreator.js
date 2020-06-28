@@ -1,9 +1,9 @@
-import { CHANGE_INPUT } from './constant'
+import * as contant from './constant'
 
 
 export const changeInputAction = (value) => {
     return {
-        type: CHANGE_INPUT,
+        type: contant.CHANGE_INPUT,
         text: value
     }
 }
