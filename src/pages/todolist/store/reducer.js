@@ -1,5 +1,5 @@
 
-import { CHANGE_INPUT } from './actionCreator'
+import * as contant from './constant'
 const { fromJS } = require('immutable');
 
 const defaultState = fromJS({
@@ -13,9 +13,8 @@ const defaultState = fromJS({
 
 
 const reducer = (state = defaultState, action) => {
-    console.log(CHANGE_INPUT)
     switch(action.type) {
-        case CHANGE_INPUT: return '';
+        case contant.CHANGE_INPUT: return '';
         default: return state 
     }
 }
