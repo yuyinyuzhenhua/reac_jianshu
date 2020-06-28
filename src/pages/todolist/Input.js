@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import * as actionCreator from './store/actionCreator'
 
 class Input extends Component{
     render(){
@@ -22,7 +22,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
     return {
         handleChange(e){
-            
+            dispatch(actionCreator.changeInputAction)
         }
     }
 }
