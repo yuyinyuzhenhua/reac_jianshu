@@ -1,9 +1,10 @@
 import React from 'react';
+import Todolist from './pages/todolist'
 
 function App() {
   return (
     <div className="App">
-      vsdvfd
+      <Todolist></Todolist>
     </div>
   );
 }
