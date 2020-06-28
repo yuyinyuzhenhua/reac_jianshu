@@ -6,7 +6,7 @@ class Input extends Component{
     render(){
         const { iptVal, handleChange } = this.props
         return <div>
-            <input value={iptVal} onChange={this.handleChange}/>
+            <input value={iptVal} onChange={handleChange}/>
         </div>
     }
 
@@ -22,7 +22,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
     return {
         handleChange(e){
-            dispatch(actionCreator.changeInputAction)
+            dispatch(actionCreator.changeInputAction(e.target.value))
         }
     }
 }

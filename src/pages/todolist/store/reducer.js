@@ -14,7 +14,7 @@ const defaultState = fromJS({
 
 const reducer = (state = defaultState, action) => {
     switch(action.type) {
-        case contant.CHANGE_INPUT: return '';
+        case contant.CHANGE_INPUT: return state.iptVal = action.text;
         default: return state 
     }
 }
