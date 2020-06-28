@@ -1,3 +1,5 @@
+
+import { CHANGE_INPUT } from './actionCreator'
 const { fromJS } = require('immutable');
 
 const defaultState = fromJS({
@@ -11,7 +13,11 @@ const defaultState = fromJS({
 
 
 const reducer = (state = defaultState, action) => {
-    return state
+    console.log(CHANGE_INPUT)
+    switch(action.type) {
+        case CHANGE_INPUT: return '';
+        default: return state 
+    }
 }
 
 export default reducer
