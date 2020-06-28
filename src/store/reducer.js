@@ -1,15 +1,6 @@
-const defaultState = {
-    iptVal: '',
-    list: [{
-        id: 1,
-        name: '打扫',
-        completed: false,
-    }]
-}
+import { combineReducers } from 'redux-immutable'
+import { reducer as todolistStore } from '../pages/Todolist/store'
 
-
-const reducer = (state = defaultState, action) => {
-    return state
-}
-
-export default reducer
+export default combineReducers({
+    todolist: todolistStore
+})
