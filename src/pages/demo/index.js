@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import List from './List'
-import InputBtn from './InputBtn'
-import Footer1 from './Footer1'
+// import List from './List'
+// import InputBtn from './InputBtn'
+// import Footer1 from './Footer1'
 import HOCDemo from './HOCDemo'
 
 class Demo extends Component{

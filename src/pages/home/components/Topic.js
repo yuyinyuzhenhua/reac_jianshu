@@ -5,13 +5,12 @@ import { connect } from 'react-redux'
 class Topic extends Component{
     render(){
         const { list } = this.props;
-        console.log(list)
         
         return <TopicWrapper>
             {
                 list.map(item => {
                     return <TopicItem key={item.id}>
-                        <img className="topic-pic"  src={item.src} alt={item.title}/>
+                        <img className="topic-pic"  src='./img/1.png' alt={item.title}/>
                         {item.title}
                     </TopicItem>
                 })
