@@ -1,21 +1,26 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {
     HomeWrapper,
     HomeLeft,
-    HomeRight
+    HomeRight,
+    BackTop
 } from './style'
 import List from './components/List'
 import Recommend from './components/Recommend'
 import Topic from './components/Topic'
 import axios from 'axios'
+import { actionCreators } from './store'
+import { Link } from 'react-router-dom'
 // import Writer from './components/Writer'
 // LoraWAN产品
 const Writer = React.lazy(() => import('./components/Writer'))
 
 
-class Home extends Component{
+class Home extends PureComponent{
+
     render(){
+        const { scrollShow } = this.props;
         return (
             <HomeWrapper>  
                 <HomeLeft>
@@ -29,8 +34,16 @@ class Home extends Component{
                         <Writer/> 
                     </React.Suspense>                    
                 </HomeRight>
+                {
+                    scrollShow ? <BackTop  onClick={this.handleScrollTop}>顶部</BackTop> : ''
+                }
+                
             </HomeWrapper>
         )
+    }
+
+    handleScrollTop(){
+        window.scrollTo(0, 0)
     }
 
     componentDidMount() {
@@ -44,25 +57,40 @@ class Home extends Component{
             };
             this.props.changeHomeData(action);
         })
+
+        window.addEventListener('scroll', this.props.handleScroll)
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener('scroll', this.props.handleScroll)
     }
 
     handleClick = (e) => {
-    //    console.log(this.iptRef.current.value)
        console.log(this.fileRef.current.files[0].name)
     }
 }
 
 
-// const mapState = state => {
-
-// }
+const mapState = state => {
+    return {
+        scrollShow: state.getIn(['home', 'scrollShow'])
+    }
+}
 
 const mapDispatch = dispatch => {
     return {
         changeHomeData(action){
             dispatch(action)
+        },
+        handleScroll(e){
+            let top = document.documentElement.scrollTop;
+            if(top > 100) {
+                dispatch(actionCreators.toggleTopShow(true))
+            } else {
+                dispatch(actionCreators.toggleTopShow(false))
+            }
         }
     }
 }
 
-export default connect( null,  mapDispatch)(Home)
+export default connect( mapState,  mapDispatch)(Home)

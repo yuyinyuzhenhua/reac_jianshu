@@ -8,8 +8,8 @@ import Demo from './pages/demo'
 function App() {
   return (
     <Fragment>
-      <Header></Header>
       <BrowserRouter>
+        <Header></Header>
         <Route path='/' exact><Home/></Route>
         <Route path='/detail' exact><Detail/></Route>
         <Route path="/home" exact><Demo/></Route>

@@ -23,3 +23,10 @@ export const getMoreList = () => {
         })
     }
 }
+
+export const toggleTopShow = (flag) => {
+    return {
+        type: constants.CHANGE_TOP_SHOW,
+        flag: flag
+    }
+}
