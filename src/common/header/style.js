@@ -2,6 +2,8 @@ import styled  from 'styled-components'
 import logoPic from '../../statics/logo.png'
 
 export const HeaderWrap = styled.div`
+    width: 1300px;
+    margin: 0 auto;
     position: relative;
     height: 58px;
     border-bottom: 1px solid #f0f0f0;

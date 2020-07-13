@@ -65,9 +65,9 @@ class Header extends Component{
         } else {
             return null
         }
-}
+    }
     render(){
-        const { focused, onFocus, onBlur, list } = this.props;
+        const { focused, onFocus, onBlur, list, isLogin } = this.props;
         return (
             <HeaderWrap>
                 <Link to="/">
@@ -76,7 +76,8 @@ class Header extends Component{
                 <Nav>
                     <NavItem className='left active'>首页</NavItem>
                     <NavItem className='left'>下载APP</NavItem>
-                    <NavItem className='right'>登录</NavItem>
+                    { isLogin ? <NavItem className='right'>退出</NavItem> : <NavItem className='right'>登录</NavItem> }
+                    
                     <NavItem className='right'><i className='iconfont'>&#xe636;</i></NavItem>
                     <SearchWrapper>
                         <CSSTransition
@@ -95,8 +96,8 @@ class Header extends Component{
                     </SearchWrapper>
                 </Nav>
                 <Addition>
-                    <Button className="reg">注册</Button>
                     <Button className="writting"><i className="iconfont">&#xe60f;</i>写文章</Button>
+                    <Button className="reg">注册</Button>
                 </Addition>
             </HeaderWrap>
         )
@@ -110,6 +111,7 @@ const mapStateToProps = state => {
         page: state.get('header').get('page'),
         mouseIn: state.get('header').get('mouseIn'),
         totalPage: state.get('header').get('totalPage'),
+        isLogin: state.get('header').get('isLogin'),
     }
 }
 
