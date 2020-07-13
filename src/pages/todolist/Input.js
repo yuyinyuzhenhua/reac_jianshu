@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as actionCreator from './store/actionCreator'
+import * as actionCreator from '../../store/actionCreator'
 
 class Input extends Component{
     render(){
         const { iptVal, handleChange, handleEnter } = this.props
+        
         return <div>
             <input value={iptVal} onChange={handleChange} onKeyUp={handleEnter}/>
         </div>
     }
-
-    
 }
 
 const mapState = state => {
     return {
-        iptVal: state.get('todolist').get('iptVal')
+        iptVal: state.iptVal
     }
 }
 

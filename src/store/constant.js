@@ -1,0 +1,6 @@
+export const CHANGE_INPUT = 'todolist/change_input'
+export const ADD_ITEM = 'todolist/add_item'
+export const CHECKED = 'todolist/checked'
+export const GETALL = 'todolist/get_all'
+export const GETCOMPELTED = 'todolist/get_completed'
+export const GETNOT = 'todolist/not'
