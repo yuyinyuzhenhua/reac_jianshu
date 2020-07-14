@@ -8,7 +8,6 @@ const defaultState = fromJS({
     page: 1,
     totalPage: 1,
     mouseIn: false,
-    isLogin: false,
 })
 
 export default (state = defaultState, action) => {

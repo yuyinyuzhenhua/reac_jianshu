@@ -11,7 +11,6 @@ import Recommend from './components/Recommend'
 import Topic from './components/Topic'
 import axios from 'axios'
 import { actionCreators } from './store'
-import { Link } from 'react-router-dom'
 // import Writer from './components/Writer'
 // LoraWAN产品
 const Writer = React.lazy(() => import('./components/Writer'))
