@@ -16,9 +16,9 @@
     <!-- <h1>let const var</h1> -->
     <div class="box" id="box"></div>
     <script>
-        box.onclick=function(){
-            console.log(11);
-        }
+        // box.onclick=function(){
+        //     console.log(11);
+        // }
         
         // console.log('OK')
         // let a = 12;
@@ -51,6 +51,13 @@
 
         // console.log(typeof x)
         // let x =1
+
+
+        let str = 'border-bottom-left-radius';
+        let str1 = str.replace(/-[a-z]/g, (val) => {
+            return val.slice(1).toUpperCase()
+        })
+        console.log(str1)
     </script>
 </body>
 </html>
