@@ -6,10 +6,12 @@ import { Provider } from 'react-redux'
 import store from './store'
 import './index.less'
 
+
+
 ReactDOM.render(
     <Provider store={store}>
         <GlobalStyled/>
-        <App />
+        <App/>
     </Provider>, 
     document.getElementById('root')
 )

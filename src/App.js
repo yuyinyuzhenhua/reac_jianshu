@@ -1,14 +1,8 @@
 import React, { Fragment } from 'react';
 import Vote from './component/Vote'
 
-  
-
-console.log(React)
-
 
 function App() {
-  
-  
   return (
     <Fragment>
       <div>

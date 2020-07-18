@@ -1,60 +1,19 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'; // ES6
+import VoteHead from './VoteHead'
+import VoteMain from './VoteMain'
+import VoteFooter from './VoteFooter'
+import Subscribe from '../assets/Subscribe'
+
+window.$sub = new Subscribe()
 
 class Vote extends Component{
-    static defaultProps = {
-        supNum: 0,
-        oppNum: 0
-    }
-
-    static propTypes = {
-        title: PropTypes.string.isRequired,
-        supNum: PropTypes.number,
-        oppNum: PropTypes.number
-    }
-
-    state = {
-        supNum: this.props.supNum,
-        oppNum: this.props.oppNum,
-    }
-
+    
     render(){
-        let { title } = this.props;
-        let { supNum, oppNum} = this.state
         return <section>
-            <header>
-                <h3>{title}  N:{supNum + oppNum}</h3>
-            </header>
-            <main>
-                <p>支持人数： {supNum}</p>
-                <p>反对人数： {oppNum}</p>
-                {/* <p>支持率： {supNum/(supNum + oppNum)}</p> */}
-            </main>
-            <footer>
-                <button onClick={this.handleSup.bind(this)}>支持</button>
-                <button onClick={this.handleOpp}>反对</button>
-            </footer>
+            <VoteHead></VoteHead>
+            <VoteMain></VoteMain>
+            <VoteFooter></VoteFooter>
         </section>
-    }
-
-    handleSup = (ev) => {
-        // ev.persist()
-        // console.log(ev)
-        // console.log(this)
-        this.setState({
-            supNum: this.state.supNum+1
-        })
-        this.forceUpdate()
-    }
-    handleOpp = () => {
-        this.setState({
-            oppNum: this.state.oppNum+1
-        })
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log(this.state, nextState)
-        return false;
     }
 }
 
