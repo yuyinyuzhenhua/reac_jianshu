@@ -1,13 +1,11 @@
 import React, { Fragment } from 'react';
-import Vote from './component/Vote'
+import Task from './pages/task'
 
 
 function App() {
   return (
     <Fragment>
-      <div>
-        <Vote title="大野智"/>
-      </div>
+        <Task/>
     </Fragment>
   );
 }

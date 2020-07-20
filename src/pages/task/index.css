@@ -1,0 +1,20 @@
+.taskBox {
+  box-sizing: border-box;
+  margin: 20px auto;
+  width: 800px;
+}
+.taskBox .headerBox {
+  position: relative;
+  line-height: 60px;
+  border-bottom: 1px dashed lightblue;
+}
+.taskBox .headerBox h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+.taskBox .headerBox .ant-btn-primary {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
