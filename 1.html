@@ -15,7 +15,11 @@
 <body>
     <!-- <h1>let const var</h1> -->
     <div class="box" id="box"></div>
+    <script src="./node_modules//jquery/dist/jquery.js"></script>
     <script>
+        $.ajax({
+            url: '/list'
+        })
         // box.onclick=function(){
         //     console.log(11);
         // }
@@ -53,11 +57,11 @@
         // let x =1
 
 
-        let str = 'border-bottom-left-radius';
-        let str1 = str.replace(/-[a-z]/g, (val) => {
-            return val.slice(1).toUpperCase()
-        })
-        console.log(str1)
+        // let str = 'border-bottom-left-radius';
+        // let str1 = str.replace(/-[a-z]/g, (val) => {
+        //     return val.slice(1).toUpperCase()
+        // })
+        // console.log(str1)
     </script>
 </body>
 </html>

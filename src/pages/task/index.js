@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Tag, Table , Modal, DatePicker, Input } from 'antd';
+import { Button, Tag, Table , Modal, DatePicker, Input, message } from 'antd';
 import './index.less'
+import api from '../../api/index';
 import moment from 'moment'
 const { TextArea } = Input;
 
@@ -55,21 +56,41 @@ class Task extends Component{
         ],
         visible: false,
         task: '',
-        time: nowTime
+        time: nowTime,
+        loading: false,
+        tagList: [
+            {
+                state: 0,
+                text: '全部',
+                selected: true
+            },
+            {
+                state: 1,
+                text: '未完成',
+                selected: false
+            },
+            {
+                state: 2,
+                text: '已完成',
+                selected: false
+            }
+        ]
     }
     render(){
-        let { visible, task, dataSource, columns, time } = this.state;
+        let { visible, task, dataSource, columns, time, loading, tagList } = this.state;
         return <section className="taskBox">
             <header className="headerBox">
                 <h2>OA 管理系统</h2>
                 <Button type="primary" onClick={ev => this.setState({visible:true})}>增加</Button>
             </header>
-            <nav className="navBox">
-                <Tag color="#55acee">全部</Tag>
-                <Tag>未完成</Tag>
-                <Tag>已完成</Tag>
+            <nav className="navBox" onClick={this.changeTag} style={{margin: '20px 0'}}>
+                {
+                    tagList.map(item => {
+                        return <Tag color={item.selected ? "#55acee" : '' } key={item.state} state={item.state}>{item.text}</Tag>
+                    })
+                }
             </nav>
-            <Table dataSource={dataSource} columns={columns} pagination={false} rowKey="id"/>;
+            <Table dataSource={dataSource} columns={columns} pagination={false} loading={loading} rowKey="id"/>
             {/* 对话框 */}
             <Modal
             visible={visible}
@@ -87,7 +108,7 @@ class Task extends Component{
             ]}
             >
                 <p>人物描述</p>
-                <TextArea rows={4} task={task}></TextArea>
+                <TextArea rows={4} task={task} onInput={e => this.setState({task: e.target.value}) }></TextArea>
                 <br/>
                 <br/>
                 <p>选择日期</p>
@@ -97,10 +118,40 @@ class Task extends Component{
         </section>
     }
 
+    changeTag = (e) => {
+        let current = e.target.getAttribute('state') - 0;
+        let tagList1 =   this.state.tagList.map(item => {
+            if(item.state === current) {
+                item.selected = true;
+            } else {
+                item.selected = false;
+            }
+            return item;
+        });
+        this.setState({
+            tagList: tagList1
+        })
+        this.queryData(current)
+        localStorage.setItem('state', current)
+    }
    
 
-    handleOk = () => {
-
+    handleOk = async () => {
+        let{ task, time } = this.state;
+        console.log(task)
+        if(task.trim().length <= 0){
+            message.info('任务不能为空')
+            return;
+        }
+        if(!time){
+            message.info('时间无效')
+            return;
+        }
+        // console.log(time.toDate().getFullYear())
+        let date = time.toDate();
+        let newtime = `${date.getFullYear()}-${date.getMonth()+1}-${date.getMinutes()}`;
+        let result = await api.task.addTask(task, newtime);
+        console.log(result)
     }
     handleCancel = () => {
         this.setState({
@@ -117,7 +168,37 @@ class Task extends Component{
 
     }
 
+    queryData = async state => {
+        this.setState({ loading: true });
+        let result = await api.task.getTaskList(state)
+        let { code, list } = result;
+        this.setState({ loading: false });
+        if(parseInt(code) === 0){
+            this.setState({
+                dataSource: list
+            })
+            return;
+        }
+        message.error('获取数据失败,请稍后在尝试')
+    }
 
+    componentDidMount(){
+        let state = localStorage.getItem('state')-0 || 0;
+        if(state !== 0){
+            let tagList1 = this.state.tagList.map(item => {
+                if(item.state === state) {
+                    item.selected = true;
+                } else {
+                    item.selected = false;
+                }
+                return item;
+            });
+            this.setState({
+                tagList: tagList1
+            })
+        };
+        this.queryData(state)
+    }
 }
 
 export default Task
