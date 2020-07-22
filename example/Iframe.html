@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="" id="nav">
+        <a href="javascript:;" >淘宝</a>
+        <a href="javascript:;" >百度</a>
+        <a href="javascript:;" >京东</a>
+    </div>
+    <script>
+        nav.onclick = function(ev){
+            let txt = ev.target.innerHTML;
+            let url = '';
+            switch(txt){
+                case '百度':
+                    url= 'baidu.html';
+                    break;
+                case '京东':
+                    url= 'jingdong.html';
+                    break;
+                case '淘宝':
+                    url = 'taobao.html';
+                    break;
+                default:
+                    url: 'default.html'
+            };
+            // console.log(url);
+
+            window.history.pushState({xxx:'xxx'}, 'xxx', url)
+        }
+
+        window.onpopstate = function(){
+            console.log('change')
+        }
+        // function render(){
+        //     let href = location.href;
+        //     let hash = href.substring(href.indexOf('#') + 1)
+        //     if(hash === '' || hash === 'baidu'){
+        //         box.innerHTML = '百度'
+        //     } else if (hash === 'jingdong'){
+        //         box.innerHTML = '京东'
+        //     } else if (hash === 'taobao') {
+        //         box.innerHTML = '淘宝'
+        //     }
+        // }
+        // render()
+        // window.onhashchange = render
+    </script>
+</body>
+</html>

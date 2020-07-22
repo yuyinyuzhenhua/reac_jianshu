@@ -55,9 +55,8 @@ router.get('/getTaskList', function(req, res, next){
 
 router.post('/addTask', function(req, res, next){
   console.log(req.body)
-  res.send({
-    code: 0
-  })
+  res.setStatus({code: 200});
+  res.send({status: 200, data: [0, 1, 2]})
 })
 
 router.get('/list', function(req, res, next){
@@ -67,7 +66,7 @@ router.get('/list', function(req, res, next){
   //   code: 0,
   //   list: [1, 2, 3]
   // }
-  res.send({code: 0})
+  res.send(1)
 })
 
 module.exports = router;
