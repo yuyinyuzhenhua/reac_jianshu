@@ -15,10 +15,15 @@
 <body>
     <!-- <h1>let const var</h1> -->
     <div class="box" id="box"></div>
-    <script src="./node_modules//jquery/dist/jquery.js"></script>
+    <script src="./jquery.js"></script>
     <script>
         $.ajax({
-            url: '/list'
+            url: 'http://127.0.0.1:9999/list',
+            method: 'get',
+            dataType: 'jsonp',
+            success: function(res){
+                console.log(res)
+            }
         })
         // box.onclick=function(){
         //     console.log(11);

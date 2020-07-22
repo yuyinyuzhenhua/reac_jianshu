@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border-bottom-left-radius: ;
+        }
+    </style>
+</head>
+<body>
+    <h1>A.html</h1>
+    <iframe id="iframe" src="http://127.0.0.1:8887/B.html" frameborder="0"></iframe>
+    <script>
+        iframe.onload = function(){
+            iframe.contentWindow.postMessage('陪陪', 'http://127.0.0.1:8887/B.html')
+        }
+        window.onmessage = function(ev){
+            console.log(ev.data);
+        }
+    </script>
+</body>
+</html>

@@ -60,4 +60,14 @@ router.post('/addTask', function(req, res, next){
   })
 })
 
+router.get('/list', function(req, res, next){
+  console.log(req.query.callback)
+  // let { callback } = req.query;
+  // let data = {
+  //   code: 0,
+  //   list: [1, 2, 3]
+  // }
+  res.send({code: 0})
+})
+
 module.exports = router;
